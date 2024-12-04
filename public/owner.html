@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Owner Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="main-body">
+    <h1>Welcome, Owner!</h1>
+    <div class="connection-status">
+        Database Status: <span id="dbStatus">Checking...</span>
+    </div>
+    <br><hr><br> <!-- ========================================================================= -->
+    
+    The table below lists the current properties for sale. <br><br>
+
+    <h2>Properties for Sale</h2> <br> 
+    <table id="demotable" border="1">
+        <thead>
+            <tr>
+                <th>Address</th>
+                <th>Postal Code</th>
+                <th>Listing Date</th>
+                <th>Listing Price</th>
+                <th>Size</th>
+                <th>Images Link</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+<br> 
+    <h2> Add Property </h2>
+
+    If you wish to list a property for sale, please fill out the form below. Ensure that you have an existing account and use the same phone 
+    number to add your property. Please note that the values are case and space sensitive! <br>
+    (Also note that, if your property is already listed, you cannot add it again) <br><br>
+  
+    <form id="insertDemotable">
+        Owner Phone Number: <input type="text" id="phone-number" placeholder="Enter Phone Number" required> 
+        Property Postal Code: <input type="text" id="postalCode" placeholder="Enter Postal Code" required> 
+        Listing Date: <input type="date" id="listingDate" placeholder="Enter Date" required> 
+        Property Address: <input type="text" id="address" placeholder="Enter Address of Property" required>
+        ListingPrice: <input type="number" id="listingPrice" placeholder="Enter Listing Price" value="0"> 
+        Property Size: <input type="number" id="size" placeholder="Enter Size (in Square Foot)" value="0" > 
+        Link to Images of Property: <input type="text" id="imageLink" placeholder="Enter link" value = "images" required>
+
+        <label for="property-select">Choose a property type:</label>
+        <select name="type" id="type-select">
+            <option value="" >--Please choose an option--</option>
+            <option value="Residential"  id="type-residential">Residential</option>
+            <option value="Commercial"  id="type-commercial">Commercial</option>
+       </select> <br><br>
+
+        <div id="selectConditions"></div> 
+
+
+        <button type="submit"> Add Property </button> <br><br>
+    </form>
+    <div id="insertResultMsg"></div>
+    <div id="insertResultOwns"></div>
+    <div id="insertResultWrongOwns"></div>
+
+    <div id="insertResultMsgProp"></div>
+    <div id="insertResultMsgPropWrong"></div>
+
+    <div id="insertResultcomm"></div>
+
+    <br><hr><br> <!-- ========================================================================= -->
+    <h2>Current Client List</h2> <br>
+    <table id="client-table" border="1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Agent ID</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+<br>
+    <h2>Update Your Information</h2>
+
+    <p> If you wish to update any personal information, please enter your phone number and select which information you wish to update.
+         Please note that the values are case and space sensitive!</p>
+<br>
+    <form id="updataNameDemotable">
+    <input type="text" id="phonenumber" placeholder="Enter phone number" required> 
+
+    <label>Select what you wish to update:</label>
+    <select name="information" id="attribute-select">
+        <option value="">--Please choose an option--</option>
+        <option value="Name">Name</option>
+        <option value="Address">Address</option>
+        <option value="Email">Email</option>
+        <option value="Agent ID">Agent ID</option>
+   </select> <br><br>
+
+   <label id ="information"> </label>
+   <input type="text" id="updateInfo" placeholder="Enter updated info "> <br><br>
+
+    <button type="submit"> Update Information </button> <br>
+    </form>
+    <div id="updateNameResultMsg"></div>
+
+    <br><hr><br> <!-- ========================================================================= -->
+
+    <h2>View Property Managers</h2>
+    <p>To see the management of a property please search either the property or the agency you are interested in.</p> <br>
+        <table id="property-manages-table" border="1">
+            <thead>
+                <tr>
+                    <!--Table head, need to be adjusted accordingly to align with your own.-->
+                    <th>Agency Name</th>
+                    <th>Address</th>
+                    <th>Postal Code</th>
+                    <th>Listing Date</th>
+                    <th>Listing Price</th>
+                    <th>Size</th>
+                    <th>Image Link</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+
+    <table id="propertyManagesTable" border="1">
+    </table> <br>
+    <form id="selectPropertyManages">
+        <label for = "menu">Select Columns:</label>
+         <div id="selectConditionsPropertyManages">
+            </div> <br>
+             
+        <button type="button" id="addConditionPropertyManages">Add Filter</button>
+        <button type="submit" id="submitPropertyManages"> Submit </button> <br>
+    </form> <br>
+    <!-- A placeholder to display messages related to the update operation. -->
+    <div id="selectPropertyManagesResultMsg"></div>
+    <br><hr><br> <!-- ========================================================================= -->
+
+<!-- For Nested Aggregation -->
+<div class="query-section">
+    <h2>Property Size Analysis</h2> 
+    <p class="query-description">Discover the cheapest properties of any size. Click to find properties whose price falls below the average listing price for their size group.</p>
+    <form id="nestedAggregationForm">
+        <button type="submit">Get Properties</button>
+    </form>
+    <table id="nestedAggregationResults">
+        <thead>
+            <tr>
+                <th>Address</th>
+                <th>Postal Code</th>
+                <th>Listing Date</th>
+                <th>Property Size</th>
+                <th>Listing Price</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+<div id="nestedaggregationmsg"></div>
+
+<!-- ===================================================================================== -->
+    <!-- External JavaScript file that contains the functionality/logic for the operations above. -->
+    <script src="owner.js"></script>
+</body>
+</html>

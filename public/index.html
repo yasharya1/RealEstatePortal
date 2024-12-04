@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<link href="/favicon.ico" type="image/x-icon" rel="icon" />
+
+<head>
+    <link rel = "stylesheet" href = "styles.css">
+    <meta charset="UTF-8">
+    <!-- This meta tag ensures that the website renders correctly across different device sizes, enhancing mobile responsiveness. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Database Application</title>
+</head>
+<body>
+    <!-- ===================================================================================== -->
+    <h1>Database Connection Status: 
+        <!-- An in-line placeholder to display connection status. -->
+        <span id="dbStatus"> </span>
+        <!-- A loading GIF, will be hided once get the status. -->
+        <img id="loadingGif" class="loading-gif" src="loading_100px.gif" alt="Loading...">
+    </h1>
+    <br><hr><br> <!-- ========================================================================= -->
+
+    <h2>Properties for Sale</h2>
+    <table id="demotable" border="1">
+        <thead>
+            <tr>
+                <th>Address</th>
+                <th>Postal Code</th>
+                <th>Listing Date</th>
+                <th>Listing Price</th>
+                <th>Size</th>
+                <th>Images Link</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <h2> Add Property </h2>
+    <form id="insertDemotable">
+        Owner Phone Number: <input type="text" id="phone-number" placeholder="Enter Phone Number" required> 
+        Property Postal Code: <input type="text" id="postalCode" placeholder="Enter Postal Code" required> 
+        Listing Date: <input type="date" id="listingDate" placeholder="Enter Date" required> 
+        Property Address: <input type="text" id="address" placeholder="Enter Address of Property" required>
+        ListingPrice: <input type="number" id="listingPrice" placeholder="Enter Listing Price" value="0"> 
+        Property Size: <input type="number" id="size" placeholder="Enter Size (in Square Foot)" value="0" > 
+        Link to Images of Property: <input type="text" id="imageLink" placeholder="Enter link" value = "images" required>
+
+        <label for="property-select">Choose a property type:</label>
+        <select name="type" id="type-select">
+            <option value="" >--Please choose an option--</option>
+            <option value="Residential"  id="type-residential">Residential</option>
+            <option value="Commercial"  id="type-commercial">Commercial</option>
+       </select> <br><br>
+
+        <div id="selectConditions"></div> 
+
+
+        <button type="submit"> Add Property </button> <br><br>
+    </form>
+    <div id="insertResultMsg"></div>
+    <div id="insertResultOwns"></div>
+    <div id="insertResultWrongOwns"></div>
+
+    <div id="insertResultMsgProp"></div>
+    <div id="insertResultMsgPropWrong"></div>
+
+    <div id="insertResultcomm"></div>
+
+
+
+    <br><hr><br> <!-- ========================================================================= -->
+    <h2>Current Client List</h2>
+    <table id="client-table" border="1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Agent ID</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <h2>Update Your Information</h2>
+    <p> If you wish to update any personal information, please enter your phone number and select which information you wish to update.
+         Please note that the values are case and space sensitive!</p>
+
+    <form id="updataNameDemotable">
+    <input type="text" id="phonenumber" placeholder="Enter phone number" required> 
+
+    <label>Select what you wish to update:</label>
+    <select name="information" id="attribute-select">
+        <option value="">--Please choose an option--</option>
+        <option value="Name">Name</option>
+        <option value="Address">Address</option>
+        <option value="Email">Email</option>
+        <option value="Agent ID">Agent ID</option>
+   </select> <br><br>
+
+   <label id ="information"> </label>
+   <input type="text" id="updateInfo" placeholder="Enter updated info "> <br><br>
+
+    <button type="submit"> update </button> <br>
+    </form>
+    <div id="updateNameResultMsg"></div>
+
+    <br><hr><br> <!-- ========================================================================= -->
+    <h2>Viewings Booked</h2>
+        <table id="viewings-table" border="1">
+            <thead>
+                <tr>
+                    <!--Table head, need to be adjusted accordingly to align with your own.-->
+                    <th>Phone Number</th>
+                    <th>Time</th>
+                    <th>Viewing Date</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+    <h2>Delete your viewing </h2>
+    <p> If you wish to delete a viewing booked, please enter your phone number, date and time at which your booking was booked.
+         Please note that the values are case and space sensitive!</p>
+
+    <form id="deleteview">
+            Phone Number: <input type="text" id="view-phone-number" placeholder="Enter phone number" required> 
+            Time: <input type="text" id="view-time" placeholder="Enter time" required> 
+            Viewing Date: <input type="text" id="view-date" placeholder="Enter date" required>
+
+            <button type="submit"> Delete Viewing </button> <br><br>
+    </form>
+    <div id="deletedviewmsg"></div>
+
+    <br><hr><br> <!-- ========================================================================= -->
+
+
+    If you are curious about buyers who have fully paid for all their houses, click here:  <button id="openBtn">Fully paid</button>
+
+    <div id="myPopup" class="popup">
+  <div class="popup-content">
+    <span class="close-btn" id="closeBtn">&times;</span>
+    <div id="popup_msg"> </div> <br>
+  </div>
+</div>
+
+
+    <!-- Section for GROUP BY Query -->
+    <h2>Properties Assessment Count</h2>
+    <form id="groupByQueryForm">
+        <label for="propertyAddress">Select Property Address:</label>
+        <select id="propertyAddress" required>
+            <option value="">--Select an address--</option>
+        </select>
+        <button type="submit">Show Results</button>
+    </form>
+    <table id="groupByResults" border="1">
+        <thead>
+            <tr>
+                <th>Address</th>
+                <th>Postal Code</th>
+                <th>Number of Assessments</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <br><hr><br>
+
+    <!-- Section for HAVING Query -->
+    <h2>Find Properties Below Average Price by Location</h2>
+    <form id="havingQueryForm">
+        <label for="inputPrice">Enter Max Price:</label>
+        <input type="number" id="inputPrice" placeholder="Enter price" min="0" step="1000" required>
+        <button type="submit">Show Results</button>
+    </form>
+    <table id="havingResults" border="1">
+        <thead>
+            <tr>
+                <th>Address</th>
+                <th>Postal Code</th>
+                <th>Average Price</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <br><hr><br>
+
+    <!-- Section for Nested Aggregation Query -->
+    <h2>Find Residential Properties Below Average Price</h2>
+    <button id="nestedAggregationQuery">Show Results</button>
+    <div id="averagePriceDisplay" class="average-price-box"></div>
+    <table id="nestedAggregationResults" border="1">
+        <thead>
+            <tr>
+                <th>Address</th>
+                <th>Postal Code</th>
+                <th>Listing Date</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <br><hr><br>
+
+    <br><hr><br> <!-- ========================================================================= -->
+
+    <h2>All Availble Viewings</h2>
+    <p>To select a viewing to attend please search for a convient viewing using the dropdown below. You may filter viewings by multiple conditions by clicking
+        the Add Condition button. Please do not leave any conditions blank. You may also select the columns you wish include using the checkboxes below. 
+    </p>
+    <p>Please format dates as YYYY-MM-DD and times as HH.MM</p>
+
+    <table id="all-viewings-table" border="1">
+        <thead></thead>
+        <tbody></tbody>
+    </table>
+
+   <form id="selectViewingForm">
+       <label for = "menu">Select Columns:</label>
+       <div id="selectConditionsViewings">
+        </div>
+        
+        <button type="button" id="addCondition">Add Condition</button>
+       <button type="submit" id="selectViewing"> Submit </button> <br>
+   </form>
+   <div id="selectViewingsResultMsg"></div>
+
+    <br><hr><br> <!-- ========================================================================= -->
+
+    <form id="selectViewingCols">
+        <fieldset>
+            <legend>Select Desired Columns:</legend>
+                <label>
+                <input type="checkbox" name="column" value="ViewingDate">Date</label>
+                <label>
+                    <input type="checkbox" name="column" value="Time">Time</label>
+                <label>
+                    <input type="checkbox" name="column" value="Address">Address</label>
+                <label>
+                    <input type="checkbox" name="column" value="PostalCode">Postal Code</label>
+                <label>
+                    <input type="checkbox" name="column" value="ListingDate">Listing Date</label>
+
+        </fieldset><br>
+        <button type="submit">Select Columns</button>
+    </form>
+    <!-- A placeholder to display messages related to the update operation. -->
+    <div id="selectViewingColsResultMsg"></div>
+
+
+    <br><hr><br> <!-- ========================================================================= -->
+
+    <h2>View Property Managers</h2>
+    <p>To see the management of a property please search either the property or the agency you are interested in.</p>
+        <table id="property-manages-table" border="1">
+            <thead>
+                <tr>
+                    <!--Table head, need to be adjusted accordingly to align with your own.-->
+                    <th>Address</th>
+                    <th>Postal Code</th>
+                    <th>Listing Date</th>
+                    <th>Listing Price</th>
+                    <th>Size</th>
+                    <th>Image Link</th>
+                    <th>Agency Name</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+
+    <table id="propertyManagesTable" border="1">
+    </table>
+    <form id="selectPropertyManages">
+        <label for = "menu">Select Columns:</label>
+         <div id="selectConditionsPropertyManages">
+            </div>
+             
+        <button type="button" id="addConditionPropertyManages">Add Filter</button>
+        <button type="submit" id="submitPropertyManages"> Submit </button> <br>
+    </form>
+    <!-- A placeholder to display messages related to the update operation. -->
+    <div id="selectPropertyManagesResultMsg"></div>
+
+    <!-- ===================================================================================== -->
+    <!-- External JavaScript file that contains the functionality/logic for the operations above. -->
+    <script src="scripts.js"></script>
+</body>
+</html>
+

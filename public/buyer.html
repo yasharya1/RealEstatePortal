@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buyer Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="main-body">
+    <h1>Welcome, Buyer!</h1>
+    <div class="connection-status">
+        Database Status: <span id="dbStatus">Checking...</span>
+    </div>
+
+    <br><hr><br> <!-- ========================================================================= -->
+
+    <h2>Available Viewings</h2>
+    <p>To select a viewing to attend, please search for a convenient viewing from the current list of available viewings using the dropdown below. <br> 
+        You may filter viewings by multiple conditions by clicking the Add Condition button. 
+        Please do not leave any conditions blank. 
+    </p>
+    <p>Please format dates as YYYY-MM-DD and times as HH.MM</p> <br>
+
+    <table id="all-viewings-table" border="1">
+        <thead></thead>
+        <tbody></tbody>
+    </table> <br>
+
+   <form id="selectViewingForm">
+       <label for = "menu">Select Columns:</label>
+       <div id="selectConditionsViewings">
+        </div>
+        
+        <button type="button" id="addCondition">Add Condition</button>
+       <button type="submit" id="selectViewing"> Submit </button> <br>
+   </form>
+   <div id="selectViewingsResultMsg"></div>
+
+    <br><hr><br> <!-- ========================================================================= -->
+
+    You may also select the columns you wish include using the checkboxes below.  <br><br>
+
+    <h4>Select desired columns:</h4> <br>
+
+
+    <form id="selectViewingCols">
+        <fieldset>
+                <label>
+                <input type="checkbox" name="column" value="ViewingDate">Date</label>
+                <label>
+                    <input type="checkbox" name="column" value="Time">Time</label>
+                <label>
+                    <input type="checkbox" name="column" value="Address">Address</label>
+                <label>
+                    <input type="checkbox" name="column" value="PostalCode">Postal Code</label>
+                <label>
+                    <input type="checkbox" name="column" value="ListingDate">Listing Date</label>
+
+        </fieldset><br>
+        <button type="submit">Select Columns</button>
+    </form>
+    <!-- A placeholder to display messages related to the update operation. -->
+    <div id="selectViewingColsResultMsg"></div>
+
+    <br><hr><br> <!-- ========================================================================= -->
+
+    <h2>View Property Managers</h2> <br>
+    <p>To see the management of a property please search either the property or the agency you are interested in.</p> <br>
+        <table id="property-manages-table" border="1">
+            <thead>
+                <tr>
+                    <!--Table head, need to be adjusted accordingly to align with your own.-->
+                    <th>Agency Name</th>
+                    <th>Address</th>
+                    <th>Postal Code</th>
+                    <th>Listing Date</th>
+                    <th>Listing Price</th>
+                    <th>Size</th>
+                    <th>Image Link</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table> <br>
+
+
+    <table id="propertyManagesTable" border="1">
+    </table>
+    <form id="selectPropertyManages">
+        <label for = "menu">Select Columns:</label>
+         <div id="selectConditionsPropertyManages">
+            </div>
+             
+        <button type="button" id="addConditionPropertyManages">Add Filter</button>
+        <button type="submit" id="submitPropertyManages"> Submit </button> <br>
+    </form>
+    <!-- A placeholder to display messages related to the update operation. -->
+    <div id="selectPropertyManagesResultMsg"></div>
+
+<!-- ===================================================================================== -->
+<br><hr><br> <!-- ========================================================================= -->
+
+<h2>Current Client List</h2>
+<br>
+<table id="client-table" border="1">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Agent ID</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+<br> 
+
+<h2>Update Your Information</h2>
+
+<p> If you wish to update any personal information, please enter your phone number and select which information you wish to update.
+         Please note that the values are case and space sensitive!</p>
+<br>
+    <form id="updataNameDemotable">
+    <input type="text" id="phonenumber" placeholder="Enter phone number" required> 
+
+    <label>Select what you wish to update:</label>
+    <select name="information" id="attribute-select">
+        <option value="">--Please choose an option--</option>
+        <option value="Name">Name</option>
+        <option value="Address">Address</option>
+        <option value="Email">Email</option>
+        <option value="Agent ID">Agent ID</option>
+   </select> <br><br>
+
+   <label id ="information"> </label>
+   <input type="text" id="updateInfo" placeholder="Enter updated info "> <br><br>
+
+    <button type="submit"> Update Information </button> <br>
+    </form>
+    <div id="updateNameResultMsg"></div>
+
+<br><hr><br> <!-- ========================================================================= -->
+    <h2>Viewings Booked</h2> <br>
+        <table id="viewings-table" border="1">
+            <thead>
+                <tr>
+                    <!--Table head, need to be adjusted accordingly to align with your own.-->
+                    <th>Phone Number</th>
+                    <th>Time</th>
+                    <th>Viewing Date</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <br>
+    <h2>Delete your viewing </h2>
+
+    <p> If you wish to delete a property viewing booked, please enter your phone number, date and time at which your booking was booked.
+         Please note that the values are case and space sensitive!</p>
+         <br>
+
+    <form id="deleteview">
+            Phone Number: <input type="text" id="view-phone-number" placeholder="Enter phone number" required> 
+            Time: <input type="text" id="view-time" placeholder="Enter time" required> 
+            Viewing Date: <input type="text" id="view-date" placeholder="Enter date" required>
+
+            <button type="submit"> Delete Viewing </button> <br><br>
+    </form>
+    <div id="deletedviewmsg"></div>
+
+<br><hr><br> <!-- ========================================================================= -->
+
+<!-- For Having Query -->
+<div class="query-section">
+    <h2>Properties Below Price Threshold</h2>
+    <p class="query-description">Filter and find the number of properties listed below a specified maximum price.</p> <br>
+    <form id="havingQueryForm">
+        <label for="maxPrice">Maximum Price:</label>
+        <input type="number" id="maxPrice" required min="0" step="1000">
+        <button type="submit">Get number of Properties </button>
+    </form> <br>
+    <table id="havingResults">
+        <thead>
+            <tr>
+                <th>Count</th>
+                <th>Listing Price</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<br><hr><br> <!-- ========================================================================= -->
+
+<!-- For Nested Aggregation -->
+<div class="query-section">
+    <h2>Property Size Analysis</h2> 
+    <p class="query-description">Discover the cheapest properties of any size. Click to find properties whose price falls below the average listing price for their size group.</p>
+    <form id="nestedAggregationForm">
+        <button type="submit">Get Properties</button>
+    </form>
+    <table id="nestedAggregationResults">
+        <thead>
+            <tr>
+                <th>Address</th>
+                <th>Postal Code</th>
+                <th>Listing Date</th>
+                <th>Property Size</th>
+                <th>Listing Price</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+<div id="nestedaggregationmsg"></div>
+
+<!-- External JavaScript file that contains the functionality/logic for the operations above. -->
+    <script src="buyer.js"></script>
+</body>
+</html>

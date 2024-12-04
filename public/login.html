@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Estate Portal - Login</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="login-body">
+    <div class="connection-status">
+        Database Status: <span id="dbStatus">Checking...</span>
+    </div>
+
+    <div class="page-container">
+        <div class="split-container">
+            <div class="login-section">
+                <div class="login-content">
+                    <div class="brand">
+                        <div class="logo">🏠</div>
+                        <h1>Real Estate Portal</h1>
+                    </div>
+                    
+                    <div class="welcome-text">
+                        <h2>Welcome to your<br/>Property Management Hub</h2>
+                        <p>Enter your details to access your dashboard</p>
+                    </div>
+
+                    <form id="loginForm" class="login-form">
+                        <div class="form-group">
+                            <label for="userType">I am a:</label>
+                            <select id="userType" required>
+                                <option value="agent">Agent</option>
+                                <option value="buyer">Buyer</option>
+                                <option value="owner">Owner</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="identifier">Phone Number</label>
+                            <input type="text" id="identifier" required placeholder="Enter your phone number">
+                        </div>
+                        
+                        <button type="submit" class="login-button">
+                            <span class="button-text">Access Dashboard</span>
+                            <span class="button-icon">→</span>
+                        </button>
+
+                        <div id="loginError" class="error-message"></div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- <div class="image-section">
+                <div class="overlay"></div>
+                <div class="content">
+                    <h2>Streamline Your Property Management</h2>
+                    <p>See the difference our system makes</p>
+                    
+                    <div class="comparison-images">
+                        <div class="comparison-item">
+                            <img src="images/without.png" alt="Without Management System" class="system-image">
+                        
+                        </div>
+                        <div class="comparison-item">
+                            <img src="images/with.png" alt="With Our Management System" class="system-image">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+</body>
+<script src="login.js"></script>
+</html>
+

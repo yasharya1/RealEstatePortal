@@ -1,0 +1,20 @@
+{
+  "name": "project_d0z2b_r7y8y_u8t6d",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.students.cs.ubc.ca/CPSC304-2024W-T1/project_d0z2b_r7y8y_u8t6d.git"
+  },
+  "private": true,
+  "dependencies": {
+    "express": "^4.21.1",
+    "nodemon": "^3.1.7",
+    "oracledb": "^6.6.0"
+  }
+}
